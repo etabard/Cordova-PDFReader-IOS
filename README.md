@@ -1,4 +1,4 @@
-Cordova-Reader-IOS
+Cordova-PDFReader-IOS
 ==================
 
 PDF Reader plugin for IOS 7 (based on Reader https://github.com/KiranPanesar/Reader)
