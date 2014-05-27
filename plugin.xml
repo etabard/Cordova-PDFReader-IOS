@@ -33,6 +33,9 @@
         <header-file src="src/ios/Reader.h"  />
         <source-file src="src/ios/Reader.m"  />
 
+        <header-file src="src/ios/ReaderFramework/src/ReaderLanguage.h"  />
+        <source-file src="src/ios/ReaderFramework/src/ReaderLanguage.m"  />
+
         <header-file src="src/ios/ReaderFramework/src/ReaderConstants.h"  />
         <source-file src="src/ios/ReaderFramework/src/ReaderConstants.m"  />
 
