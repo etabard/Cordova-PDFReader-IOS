@@ -3,7 +3,7 @@
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.lesfrancschatons.cordova.plugins.pdfreader"
-    version="0.0.1">
+    version="0.0.2">
 
     <name>PDFReader</name>
 	<description>Cordova PDF reader for IOS (based on Reader https://github.com/KiranPanesar/Reader)</description>
@@ -13,10 +13,13 @@
 	
 	<license>MIT</license>
     <keywords>reader,pdf,ios</keywords>
+    <repo>https://github.com/etabard/Cordova-PDFReader-IOS</repo>
+    <issue>https://github.com/etabard/Cordova-PDFReader-IOS/issues</issue>
+
     <!-- ios -->
     <platform name="ios">
 
-        <js-module src="PDFReader.js" name="PDFReader">
+        <js-module src="www/PDFReader.js" name="PDFReader">
             <clobbers target="PDFReader" />
         </js-module>
         

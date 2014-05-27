@@ -12,11 +12,11 @@ Installation
 
 To install from **command line**:
 
-    cordova plugin add https://github.com/etabard/Cordova-Reader-IOS
+    cordova plugin add com.lesfrancschatons.cordova.plugins.pdfreader
 
 or:
 
-    phonegap local plugin add https://github.com/etabard/Cordova-Reader-IOS
+    phonegap local plugin add com.lesfrancschatons.cordova.plugins.pdfreader
 
 
 Documentation
