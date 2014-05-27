@@ -5,7 +5,7 @@
     id="com.lesfrancschatons.cordova.plugins.reader"
     version="0.0.1">
 
-    <name>Reader</name>
+    <name>PDFReader</name>
 	<description>Cordova PDF reader for IOS (based on Reader https://github.com/KiranPanesar/Reader)</description>
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -16,22 +16,22 @@
     <!-- ios -->
     <platform name="ios">
 
-        <js-module src="Reader.js" name="Reader">
-            <clobbers target="Reader" />
+        <js-module src="PDFReader.js" name="PDFReader">
+            <clobbers target="PDFReader" />
         </js-module>
         
         <!-- Cordova 2.2 -->
-        <plugins-plist key="Reader" string="Reader" />
+        <plugins-plist key="PDFReader" string="PDFReader" />
                     
         <!-- Cordova 2.5+ -->
         <config-file target="config.xml" parent="/*">
-            <feature name="Reader">
-                <param name="ios-package" value="Reader"/>
+            <feature name="PDFReader">
+                <param name="ios-package" value="PDFReader"/>
             </feature>
         </config-file>
 
-        <header-file src="src/ios/Reader.h"  />
-        <source-file src="src/ios/Reader.m"  />
+        <header-file src="src/ios/PDFReader.h"  />
+        <source-file src="src/ios/PDFReader.m"  />
 
         <header-file src="src/ios/ReaderFramework/src/ReaderLanguage.h"  />
         <source-file src="src/ios/ReaderFramework/src/ReaderLanguage.m"  />

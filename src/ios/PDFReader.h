@@ -4,9 +4,9 @@
 #import "ReaderViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface Reader : CDVPlugin <ReaderViewControllerDelegate>
+@interface PDFReader : CDVPlugin <ReaderViewControllerDelegate>
 {
 
 }
-
+- (void)open: (CDVInvokedUrlCommand*)command;
 @end

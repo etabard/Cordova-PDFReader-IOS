@@ -1,9 +1,9 @@
-#import "Reader.h"
+#import "PDFReader.h"
 
-@implementation Reader
+@implementation PDFReader
 
 
-- (void)openPDF: (CDVInvokedUrlCommand*)command
+- (void)open: (CDVInvokedUrlCommand*)command
 {
 		NSString* filePath = [command.arguments objectAtIndex:0];
     ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];

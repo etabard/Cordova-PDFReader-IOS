@@ -19,7 +19,7 @@ or:
     phonegap local plugin add https://github.com/etabard/Cordova-Reader-IOS
 
 
-How To Javascript
------------------
+Documentation
+-------------
 
-    Reader.openPDF('absolutepath.pdf');
+    PDFReader.open('absolutepath.pdf');

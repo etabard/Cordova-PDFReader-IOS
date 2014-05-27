@@ -4,14 +4,14 @@
  * Copyright (c) Emmanuel Tabard 2014
  */
 
-var Reader = (function () {
+var PDFReader = (function () {
 
 });
 var exec = function (methodName, options, success, error) {
-    cordova.exec(success, error, "Reader", methodName, options);
+    cordova.exec(success, error, "PDFReader", methodName, options);
 };
 
-Reader.prototype.openPDF = function (filePath) {
+PDFReader.prototype.open = function (filePath) {
     
     var setupOk = function () {
         log('setup ok');
@@ -19,9 +19,9 @@ Reader.prototype.openPDF = function (filePath) {
     var setupFailed = function () {
         log('setup failed');
     };
-    exec('openPDF', [filePath], setupOk, setupFailed);
+    exec('open', [filePath], setupOk, setupFailed);
 };
 
-var ReaderInstance = new Reader();
+var PDFReaderInstance = new PDFReader();
 
-module.exports = ReaderInstance;
+module.exports = PDFReaderInstance;
