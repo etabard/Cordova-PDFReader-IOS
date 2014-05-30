@@ -22,6 +22,13 @@ PDFReader.prototype.open = function (filePath) {
     exec('open', [filePath], setupOk, setupFailed);
 };
 
+PDFReader.prototype.clearCache = function (filePath, finishedCallback) {
+    var setupFailed = function () {
+        log('setup failed');
+    };
+    exec('clearCacheForPdfFile', [filePath], finishedCallback, setupFailed);
+};
+
 var PDFReaderInstance = new PDFReader();
 
 module.exports = PDFReaderInstance;
