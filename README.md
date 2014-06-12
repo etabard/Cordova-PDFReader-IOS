@@ -30,3 +30,9 @@ For other schemes, please download it first with cordova plugin fileTransfer.
 
     //Clear PDF Reader cache
     PDFReader.clearCache(filePath, finishedCallback);
+
+
+----------
+
+
+[![Buy me a coffee](http://ko-fi.com/img/button-1.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WJP9FB4YJKXZ2)
