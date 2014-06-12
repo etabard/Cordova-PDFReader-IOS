@@ -104,6 +104,7 @@
         <framework src="CoreGraphics.framework" />
         <framework src="QuartzCore.framework" />
         <framework src="ImageIO.framework" />
+        <framework src="MessageUI.framework" />
         
 
 
