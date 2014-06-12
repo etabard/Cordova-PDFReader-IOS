@@ -22,4 +22,11 @@ or:
 Documentation
 -------------
 
-    PDFReader.open('absolutepath.pdf');
+Supported URI scheme: file
+For other schemes, please download it first with cordova plugin fileTransfer.
+
+    //Open a pdf
+    PDFReader.open('absolutepath.pdf', success, error);
+
+    //Clear PDF Reader cache
+    PDFReader.clearCache(filePath, finishedCallback);
