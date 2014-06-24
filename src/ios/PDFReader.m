@@ -7,17 +7,30 @@
 
 - (void)open: (CDVInvokedUrlCommand*)command
 {
-		NSString* filePath = [command.arguments objectAtIndex:0];
-    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
-    ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-    readerViewController.delegate = self;
-    readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:readerViewController];
+	NSString* filePath = [command.arguments objectAtIndex:0];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    CDVPluginResult *pluginResult;
     
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navigationController animated:YES completion:nil];
-    
-    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"OK"];
+    if ([fileManager fileExistsAtPath:filePath]){
+        ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
+
+        if (!document) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"filepath document type error"];
+        } else {
+            ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+            readerViewController.delegate = self;
+            readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:readerViewController];
+        
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:navigationController animated:YES completion:nil];
+        
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"OK"];
+        }
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"filepath error"];
+    }
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
 }
 
 

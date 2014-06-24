@@ -67,7 +67,12 @@ PDFReader.prototype.open = function (filePath, success, error) {
         protectCall(error, 'open:error', {'error' : errorMessage, 'path':filePath});
     };
 
-    fileInfo = parseUrl(filePath);
+    if (!filePath) {
+        setupFailed('Empty file path');
+        return;
+    }
+
+    fileInfo = parseUrl(filePath || '');
     switch (fileInfo.protocol) {
         case 'file:':
             filePath = fileInfo.pathname;
