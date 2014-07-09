@@ -75,7 +75,7 @@ PDFReader.prototype.open = function (filePath, success, error) {
     fileInfo = parseUrl(filePath || '');
     switch (fileInfo.protocol) {
         case 'file:':
-            filePath = fileInfo.pathname;
+            filePath = decodeURIComponent(filePath.replace('file://', ''));
         break;
         default:
             setupFailed('Protocol ' + fileInfo.protocol + ' not supported');
