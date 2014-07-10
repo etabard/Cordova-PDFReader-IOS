@@ -32,7 +32,23 @@ For other schemes, please download it first with cordova plugin fileTransfer.
     PDFReader.clearCache(filePath, finishedCallback);
 
 
-----------
+You can also configure a few options here : https://github.com/etabard/Cordova-PDFReader-IOS/blob/master/src/ios/ReaderFramework/src/ReaderConstants.h#L32
 
+```
+#define READER_BOOKMARKS FALSE
+#define READER_ENABLE_MORE_BUTTON FALSE
+#define READER_ENABLE_MAIL TRUE
+#define READER_ENABLE_PRINT TRUE
+#define READER_ENABLE_THUMBS TRUE
+#define READER_ENABLE_PREVIEW TRUE
+#define READER_DISABLE_RETINA FALSE
+#define READER_DISABLE_IDLE FALSE
+#define READER_SHOW_SHADOWS TRUE
+#define READER_STANDALONE FALSE
+```
+
+----------
+----------
+----------
 
 [![Buy me a coffee](http://ko-fi.com/img/button-1.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WJP9FB4YJKXZ2)
