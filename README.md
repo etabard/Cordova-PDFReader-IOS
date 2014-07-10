@@ -32,7 +32,7 @@ For other schemes, please download it first with cordova plugin fileTransfer.
     PDFReader.clearCache(filePath, finishedCallback);
 
 
-You can also configure a few options here : https://github.com/etabard/Cordova-PDFReader-IOS/blob/master/src/ios/ReaderFramework/src/ReaderConstants.h#L32
+You can also configure a few options here : https://github.com/etabard/Cordova-PDFReader-IOS/blob/master/src/ios/ReaderFramework/src/ReaderConstants.h#L32-L41
 
 ```
 #define READER_BOOKMARKS FALSE
