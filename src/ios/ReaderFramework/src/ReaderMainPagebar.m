@@ -160,12 +160,10 @@
 		pageNumberView.autoresizesSubviews = NO;
 		pageNumberView.userInteractionEnabled = NO;
 		pageNumberView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-		pageNumberView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-
-		pageNumberView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-		pageNumberView.layer.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.6f].CGColor;
-		pageNumberView.layer.shadowPath = [UIBezierPath bezierPathWithRect:pageNumberView.bounds].CGPath;
-		pageNumberView.layer.shadowRadius = 2.0f; pageNumberView.layer.shadowOpacity = 1.0f;
+		pageNumberView.backgroundColor = [UIColor blackColor];
+    pageNumberView.alpha = 0.6;
+		pageNumberView.layer.cornerRadius = 5.0f;
+		pageNumberView.layer.masksToBounds = YES;
 
 		CGRect textRect = CGRectInset(pageNumberView.bounds, 4.0f, 2.0f); // Inset the text a bit
 

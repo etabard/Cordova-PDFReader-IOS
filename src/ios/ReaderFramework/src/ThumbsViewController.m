@@ -158,11 +158,11 @@
                                                                       action:@selector(pushDoneBarButtonItem:)];
     [self.navigationItem setLeftBarButtonItem:doneBarButtonItem];
 
-    UIImage *thumbsImage = [UIImage imageNamed:@"Reader.bundle/Reader-Thumbs"];
+    UIImage *thumbsImage = [UIImage imageNamed:@"Reader.bundle/Thumbs"];
     NSMutableArray *buttonItems = [NSMutableArray arrayWithObjects:thumbsImage, nil];
     
 #if (READER_BOOKMARKS == TRUE)
-    UIImage *bookmarkImage = [UIImage imageNamed:@"Reader.bundle/Reader-Mark-Y"];
+    UIImage *bookmarkImage = [UIImage imageNamed:@"Reader.bundle/Bookmark-Tassle"];
     [buttonItems addObject:bookmarkImage];
 #endif
     toggleBookmarksSegmentedControl = [[UISegmentedControl alloc] initWithItems:buttonItems];
@@ -209,7 +209,7 @@
 
 - (BOOL)prefersStatusBarHidden
 {
-	return YES;
+	return NO;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -403,7 +403,7 @@
 
 		[imageView addSubview:tintView];
 
-		UIImage *image = [UIImage imageNamed:@"Reader.bundle/Reader-Mark-Y"];
+		UIImage *image = [UIImage imageNamed:@"Reader.bundle/Bookmark-Tassle-Selected"];
 
 		bookMark = [[UIImageView alloc] initWithImage:image];
 

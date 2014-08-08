@@ -401,10 +401,11 @@ static NSString *ReaderActionSheetItemTitleUnbookmark = nil;
 #endif
     
 #if (READER_ENABLE_THUMBS == TRUE)
-    thumbsBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reader.bundle/Reader-Thumbs"]
-                                                                           style:UIBarButtonItemStylePlain
-                                                                          target:self
-                                                                          action:@selector(pushThumbsBarButtonItem:)];
+    thumbsBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Reader.bundle/Thumbs"]
+                                                                            style:UIBarButtonItemStylePlain
+                                                                           target:self
+                                                                           action:@selector(pushThumbsBarButtonItem:)];
+
     [buttons addObject:thumbsBarButton];
 #endif
     
