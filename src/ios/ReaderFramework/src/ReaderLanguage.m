@@ -35,8 +35,16 @@ static NSBundle *bundle = nil;
 
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"Reader" ofType:@"bundle"];
     bundle = [NSBundle bundleWithPath:bundlePath];
-    bundle = [NSBundle bundleWithPath:[bundle pathForResource:[languages objectAtIndex:0] ofType:@"lproj" ]];
     
+    for (NSString* lang in languages) {
+        bundle = [NSBundle bundleWithPath:[bundle pathForResource:lang ofType:@"lproj" ]];
+        if (bundle)
+            break;
+    }
+    
+    if (!bundle) {
+        bundle = [NSBundle bundleWithPath:[bundle pathForResource:@"en" ofType:@"lproj" ]];
+    }
 }
 
 +(NSString *)get:(NSString *)key {
