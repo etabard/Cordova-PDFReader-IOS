@@ -43,7 +43,7 @@ static NSBundle *bundle = nil;
     }
     
     if (!bundle) {
-        bundle = [NSBundle bundleWithPath:[bundle pathForResource:@"en" ofType:@"lproj" ]];
+        bundle = [NSBundle bundleWithPath:[[NSBundle bundleWithPath:bundlePath] pathForResource:@"en" ofType:@"lproj" ]];
     }
 }
 
