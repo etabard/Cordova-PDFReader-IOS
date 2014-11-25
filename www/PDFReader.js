@@ -60,7 +60,13 @@ var protectCall = function (callback, context) {
     }
 };
 
-PDFReader.prototype.open = function (filePath, success, error) {
+PDFReader.prototype.open = function (filePath, options, success, error) {
+
+    if (!options) {
+        options = {};
+    }
+
+
     if (!success) {
         success = noop;
     }
@@ -106,6 +112,10 @@ PDFReader.prototype.open = function (filePath, success, error) {
         textColor: null,
         enableShare: false
     };
+
+    Object.keys(options).forEach(function (key) {
+        defaultOptions[key] = options[key];
+    });
 
     var args = [
         filePath,
