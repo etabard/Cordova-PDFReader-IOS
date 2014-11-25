@@ -36,67 +36,70 @@
         <header-file src="src/ios/PDFReader.h"  />
         <source-file src="src/ios/PDFReader.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderLanguage.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderLanguage.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderLanguage.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderLanguage.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderConstants.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderConstants.m"  />
+        <header-file src="src/ios/ReaderFramework/CGPDFDocument.h"  />
+        <source-file src="src/ios/ReaderFramework/CGPDFDocument.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderContentPage.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderContentPage.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderColors.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderColors.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderContentTile.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderContentTile.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderDocument.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderDocument.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderContentView.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderContentView.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderConstants.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderConstants.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderDocument.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderDocument.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderViewController.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderViewController.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderMainPagebar.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderMainPagebar.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderMainToolbar.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderMainToolbar.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ReaderViewController.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ReaderViewController.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderMainPagebar.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderMainPagebar.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/ThumbsViewController.h"  />
-        <source-file src="src/ios/ReaderFramework/src/ThumbsViewController.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderContentView.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderContentView.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/CGPDFDocument.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/CGPDFDocument.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderContentPage.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderContentPage.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderDocumentOutline.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderDocumentOutline.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderContentTile.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderContentTile.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbCache.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbCache.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbCache.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbCache.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbFetch.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbFetch.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbRequest.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbRequest.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbRequest.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbRequest.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbQueue.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbQueue.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbRender.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbRender.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbFetch.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbFetch.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbView.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbView.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbRender.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbRender.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbQueue.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbQueue.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbView.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbView.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbsView.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/ReaderThumbsView.m"  />
+        <header-file src="src/ios/ReaderFramework/ReaderThumbsView.h"  />
+        <source-file src="src/ios/ReaderFramework/ReaderThumbsView.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/UIXToolbarView.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/UIXToolbarView.m"  />
+        <header-file src="src/ios/ReaderFramework/ThumbsViewController.h"  />
+        <source-file src="src/ios/ReaderFramework/ThumbsViewController.m"  />
 
-        <header-file src="src/ios/ReaderFramework/src/Supporting/UINavigationController+NavBarAnimation.h"  />
-        <source-file src="src/ios/ReaderFramework/src/Supporting/UINavigationController+NavBarAnimation.m"  />
+        <header-file src="src/ios/ReaderFramework/ThumbsMainToolbar.h"  />
+        <source-file src="src/ios/ReaderFramework/ThumbsMainToolbar.m"  />
 
-        <resource-file src="src/ios/ReaderFramework/Reader.bundle" />
+        <header-file src="src/ios/ReaderFramework/UIXToolbarView.h"  />
+        <source-file src="src/ios/ReaderFramework/UIXToolbarView.m"  />
+
+        <resource-file src="src/ios/Reader.bundle" />
         
 
         <framework src="UIKit.framework" />

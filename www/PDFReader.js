@@ -83,8 +83,35 @@ PDFReader.prototype.open = function (filePath, success, error) {
         break;
     }
 
-    
-    exec('open', [filePath], setupOk, setupFailed);
+    var defaultOptions = {
+        password: null,
+        flatUI: true,
+        showShadows: true,
+        enableThumbs: true,
+        disableRetina: false,
+        enablePreview: true,
+        bookmarks: true,
+        landscapeDoublePage: true,
+        landscapeSingleFirstPage: true,
+        toolbarBackgroundColor: null,
+        textColor: null
+    };
+
+    var args = [
+        filePath,
+        defaultOptions['password'],
+        defaultOptions['flatUI'],
+        defaultOptions['showShadows'],
+        defaultOptions['enableThumbs'],
+        defaultOptions['disableRetina'],
+        defaultOptions['enablePreview'],
+        defaultOptions['bookmarks'],
+        defaultOptions['landscapeDoublePage'],
+        defaultOptions['landscapeSingleFirstPage'],
+        defaultOptions['toolbarBackgroundColor'],
+        defaultOptions['textColor']
+    ];
+    exec('open', args, setupOk, setupFailed);
 };
 
 PDFReader.prototype.clearCache = function (filePath, finishedCallback) {

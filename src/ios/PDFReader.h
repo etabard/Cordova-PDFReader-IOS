@@ -6,7 +6,11 @@
 
 @interface PDFReader : CDVPlugin <ReaderViewControllerDelegate>
 {
-
+    ReaderViewController* readerViewController;
 }
+
+@property (nonatomic, retain) ReaderViewController *readerViewController;
+
 - (void)open: (CDVInvokedUrlCommand*)command;
+- (void)closePDFReader;
 @end
