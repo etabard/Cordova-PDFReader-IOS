@@ -28,7 +28,7 @@
     BOOL landscapeSingleFirstPage = [[command.arguments objectAtIndex:9]  isEqual: [NSNumber numberWithInt:1]];
     NSString* toolbarBackgroundColor = [command.arguments objectAtIndex:10];
     NSString* textColor = [command.arguments objectAtIndex:11];
-    
+    BOOL enableShare = [[command.arguments objectAtIndex:12]  isEqual: [NSNumber numberWithInt:1]];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     CDVPluginResult *pluginResult;
@@ -43,6 +43,7 @@
     readerConstants.bookmarks = bookmarks;
     readerConstants.landscapeDoublePage = landscapeDoublePage;
     readerConstants.landscapeSingleFirstPage = landscapeSingleFirstPage;
+    readerConstants.enableShare = enableShare;
     
     ReaderColors *readerColors = [ReaderColors sharedReaderColors];
 

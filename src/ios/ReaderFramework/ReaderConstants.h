@@ -103,4 +103,11 @@
  */
 @property (nonatomic, assign) BOOL landscapeSingleFirstPage;
 
+/**
+ *  If TRUE, enables share toolbar.
+ *
+ *  Default YES.
+ */
+@property (nonatomic, assign) BOOL enableShare;
+
 @end

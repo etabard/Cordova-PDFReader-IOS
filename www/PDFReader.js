@@ -94,7 +94,8 @@ PDFReader.prototype.open = function (filePath, success, error) {
         landscapeDoublePage: true,
         landscapeSingleFirstPage: true,
         toolbarBackgroundColor: null,
-        textColor: null
+        textColor: null,
+        enableShare: false
     };
 
     var args = [
@@ -109,7 +110,8 @@ PDFReader.prototype.open = function (filePath, success, error) {
         defaultOptions['landscapeDoublePage'],
         defaultOptions['landscapeSingleFirstPage'],
         defaultOptions['toolbarBackgroundColor'],
-        defaultOptions['textColor']
+        defaultOptions['textColor'],
+        defaultOptions['enableShare']
     ];
     exec('open', args, setupOk, setupFailed);
 };
