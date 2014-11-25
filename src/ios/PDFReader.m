@@ -5,6 +5,7 @@
 
 @implementation PDFReader
 @synthesize readerViewController;
+@synthesize callbackId;
 
 + (UIColor *)colorFromHexString:(NSString *)hexString {
     unsigned rgbValue = 0;
@@ -14,6 +15,10 @@
     return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
 }
 
+- (void)start: (CDVInvokedUrlCommand*)command
+{
+    self.callbackId = command.callbackId;
+}
 - (void)open: (CDVInvokedUrlCommand*)command
 {
     NSString* filePath = [command.arguments objectAtIndex:0];
@@ -80,7 +85,12 @@
 
 -(void) closePDFReader
 {
-    
+    if (self.callbackId) {
+        CDVPluginResult* pluginResult = nil;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"closed"];
+        [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+    }
     [self.readerViewController dismissViewControllerAnimated:YES completion:nil];
     self.readerViewController.delegate = nil;
     self.readerViewController = nil;

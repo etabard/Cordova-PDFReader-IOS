@@ -34,6 +34,15 @@ var parseUrl = function(
 var noop = function () {};
 
 var PDFReader = (function () {
+    cordova.exec(function(eventName) {
+        switch (eventName) {
+            case "closed":
+                cordova.fireDocumentEvent('PDFReaderClosed');
+            break;
+        }
+    }, function() {
+
+    }, "PDFReader", "start", []);
 });
 var exec = function (methodName, options, success, error) {
     cordova.exec(success, error, "PDFReader", methodName, options);
