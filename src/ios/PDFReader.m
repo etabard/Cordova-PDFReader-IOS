@@ -1,6 +1,7 @@
 #import "PDFReader.h"
 #import "ReaderViewController.h"
 #import "ReaderConstants.h"
+#import "ReaderThumbCache.h"
 
 
 @implementation PDFReader
@@ -106,33 +107,33 @@
 
 
 //#pragma mark Delegate methods
-//
-//- (void)clearCacheForPdfFile:(CDVInvokedUrlCommand*)command
-//{
 
-//  NSString* filePath = [command.arguments objectAtIndex:0];
-//    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
-//
-//
-//    NSFileManager *fileManager = [NSFileManager new]; // File manager instance
-//
-//  NSURL *applicationSupportPath = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
-//
-//    NSString *archivePath =  [applicationSupportPath path]; // Application's "~/Library/Application Support" path
-//
-//  NSString *archiveName = [[document.fileName stringByDeletingPathExtension] stringByAppendingPathExtension:@"plist"];
-//
-//  NSString *plistPath = [archivePath stringByAppendingPathComponent:archiveName];
-//
-//    NSLog(@"Clearing cache for document guid %@", document.guid);
-//    NSLog(@"Remove also archived plist %@", plistPath );
-//
-//    NSError *error = nil;
-//    [fileManager removeItemAtPath:plistPath error:&error];
-//    [ReaderThumbCache removeThumbCacheWithGUID:document.guid];
-//
-//    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"OK"];
-//    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+- (void)clearCacheForPdfFile:(CDVInvokedUrlCommand*)command
+{
 
-//}
+  NSString* filePath = [command.arguments objectAtIndex:0];
+    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
+
+
+    NSFileManager *fileManager = [NSFileManager new]; // File manager instance
+
+  NSURL *applicationSupportPath = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
+
+    NSString *archivePath =  [applicationSupportPath path]; // Application's "~/Library/Application Support" path
+
+  NSString *archiveName = [[document.fileName stringByDeletingPathExtension] stringByAppendingPathExtension:@"plist"];
+
+  NSString *plistPath = [archivePath stringByAppendingPathComponent:archiveName];
+
+    NSLog(@"Clearing cache for document guid %@", document.guid);
+    NSLog(@"Remove also archived plist %@", plistPath );
+
+    NSError *error = nil;
+    [fileManager removeItemAtPath:plistPath error:&error];
+    [ReaderThumbCache removeThumbCacheWithGUID:document.guid];
+
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"OK"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+}
 @end
