@@ -1,11 +1,46 @@
 Cordova-PDFReader-IOS
 ==================
 
-PDF Reader plugin for IOS 7 (based on Reader https://github.com/KiranPanesar/Reader)
+PDF Reader cordova plugin for IOS 7+ (based on Reader https://github.com/vfr/Reader)
 
-![iPod Page](http://i.imgur.com/GPL2Gn2.png)
-![iPod Page](http://i.imgur.com/551VLUx.png)
-![iPod Page](http://i.imgur.com/0nrtfWd.png)
+Introduction
+------------
+
+I've crafted this open source PDF reader code for fellow iOS
+developers struggling with wrangling PDF files onto iOS device
+screens.
+
+The code is universal and does not require any XIBs (as all UI
+elements are code generated, allowing for greatest flexibility).
+It runs on iPad, iPhone and iPod touch with iOS 6.0 and up. Also
+supported are the Retina displays in all new devices and is ready
+to be fully internationalized. The idea was to provide a complete
+project template that you could start building from, or, just pull
+the required files into an existing project to enable PDF
+reading/viewing in your app(s).
+
+![iPad Page](http://i.imgur.com/jaeCPz1.png)
+
+![iPad Thumbs](http://i.imgur.com/1b4kY9s.png)
+
+![iPod Page](http://i.imgur.com/y8wWRDN.png)
+
+![iPod Thumbs](http://i.imgur.com/nddT2RP.png)
+
+
+Features
+------------
+
+Multithreaded: The UI is always quite smooth and responsive.
+
+Supports:
+
+ - iBooks-like document navigation.
+ - Device rotation and all orientations.
+ - Encrypted (password protected) PDFs.
+ - PDF links (URI and go to page).
+ - PDFs with rotated pages.
+ - PDFs with landscape double page feature
 
 Installation
 ------------
@@ -26,26 +61,32 @@ Supported URI scheme: file
 For other schemes, please download it first with cordova plugin fileTransfer.
 
     //Open a pdf
-    PDFReader.open('absolutepath.pdf', success, error);
+    PDFReader.open('absolutepath.pdf', options, success, error);
+
+    //Available options
+    {
+        password: null,
+        flatUI: true,
+        showShadows: true,
+        enableThumbs: true,
+        disableRetina: false,
+        enablePreview: true,
+        bookmarks: true,
+        landscapeDoublePage: true,
+        landscapeSingleFirstPage: true,
+        toolbarBackgroundColor: null,
+        textColor: null,
+        enableShare: false
+    }
+
+    //Event when PDF Reader is closed
+    document.addEventListener('PDFReaderClosed', function() {console.log('closed');})
 
     //Clear PDF Reader cache
     PDFReader.clearCache(filePath, finishedCallback);
 
 
-You can also configure a few options here : https://github.com/etabard/Cordova-PDFReader-IOS/blob/master/src/ios/ReaderFramework/src/ReaderConstants.h#L32-L41
 
-```
-#define READER_BOOKMARKS FALSE
-#define READER_ENABLE_MORE_BUTTON FALSE
-#define READER_ENABLE_MAIL TRUE
-#define READER_ENABLE_PRINT TRUE
-#define READER_ENABLE_THUMBS TRUE
-#define READER_ENABLE_PREVIEW TRUE
-#define READER_DISABLE_RETINA FALSE
-#define READER_DISABLE_IDLE FALSE
-#define READER_SHOW_SHADOWS TRUE
-#define READER_STANDALONE FALSE
-```
 
 ----------
 ----------
