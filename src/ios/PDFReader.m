@@ -2,6 +2,7 @@
 #import "ReaderViewController.h"
 #import "ReaderConstants.h"
 #import "ReaderThumbCache.h"
+#import "ReaderColors.h"
 
 
 @implementation PDFReader
@@ -30,8 +31,6 @@
     BOOL disableRetina = [[command.arguments objectAtIndex:5]  isEqual: [NSNumber numberWithInt:1]];
     BOOL enablePreview = [[command.arguments objectAtIndex:6]  isEqual: [NSNumber numberWithInt:1]];
     BOOL bookmarks = [[command.arguments objectAtIndex:7]  isEqual: [NSNumber numberWithInt:1]];
-    BOOL landscapeDoublePage = [[command.arguments objectAtIndex:8]  isEqual: [NSNumber numberWithInt:1]];
-    BOOL landscapeSingleFirstPage = [[command.arguments objectAtIndex:9]  isEqual: [NSNumber numberWithInt:1]];
     NSString* toolbarBackgroundColor = [command.arguments objectAtIndex:10];
     NSString* textColor = [command.arguments objectAtIndex:11];
     BOOL enableShare = [[command.arguments objectAtIndex:12]  isEqual: [NSNumber numberWithInt:1]];
@@ -47,8 +46,6 @@
     readerConstants.disableRetina = disableRetina;
     readerConstants.enablePreview = enablePreview;
     readerConstants.bookmarks = bookmarks;
-    readerConstants.landscapeDoublePage = landscapeDoublePage;
-    readerConstants.landscapeSingleFirstPage = landscapeSingleFirstPage;
     readerConstants.enableShare = enableShare;
     
     ReaderColors *readerColors = [ReaderColors sharedReaderColors];

@@ -72,8 +72,6 @@ For other schemes, please download it first with cordova plugin fileTransfer.
         disableRetina: false,
         enablePreview: true,
         bookmarks: true,
-        landscapeDoublePage: true,
-        landscapeSingleFirstPage: true,
         toolbarBackgroundColor: null,
         textColor: null,
         enableShare: false

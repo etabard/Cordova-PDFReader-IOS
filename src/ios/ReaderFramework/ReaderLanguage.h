@@ -27,4 +27,6 @@
 
 @interface ReaderLanguage : NSObject
 +(NSString *)get:(NSString *)key;
++(NSString *)get:(NSString *)key withComment:(NSString *)comment;
+
 @end

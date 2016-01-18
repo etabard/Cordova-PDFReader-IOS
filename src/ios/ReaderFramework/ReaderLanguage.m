@@ -31,24 +31,32 @@ static NSBundle *bundle = nil;
 
 +(void)initialize {
     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+
     NSArray* languages = [defs objectForKey:@"AppleLanguages"];
 
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"Reader" ofType:@"bundle"];
     bundle = [NSBundle bundleWithPath:bundlePath];
     
     for (NSString* lang in languages) {
-        bundle = [NSBundle bundleWithPath:[bundle pathForResource:lang ofType:@"lproj" ]];
+        NSString * langonly = [[lang componentsSeparatedByString:@"-"] objectAtIndex:0];
+        bundle = [NSBundle bundleWithPath:[bundle pathForResource:langonly ofType:@"lproj" ]];
+
         if (bundle)
             break;
     }
     
     if (!bundle) {
+        NSLog(@"get english");
         bundle = [NSBundle bundleWithPath:[[NSBundle bundleWithPath:bundlePath] pathForResource:@"en" ofType:@"lproj" ]];
     }
 }
 
 +(NSString *)get:(NSString *)key {
-    return NSLocalizedStringFromTableInBundle(key, @"Reader", bundle ,nil);
+    return NSLocalizedStringFromTableInBundle(key, @"Localizable", bundle, nil);
+}
+
++(NSString *)get:(NSString *)key withComment:(NSString *)comment {
+    return NSLocalizedStringFromTableInBundle(key, @"Localizable", bundle, comment);
 }
 
 @end

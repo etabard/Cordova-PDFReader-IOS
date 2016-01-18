@@ -1,9 +1,9 @@
 //
 //	ReaderContentView.m
-//	Reader v2.8.3
+//	Reader v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-07-01.
-//	Copyright © 2011-2014 Julius Oklamcak. All rights reserved.
+//	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -41,18 +41,13 @@
 	UIUserInterfaceIdiom userInterfaceIdiom;
 
 	ReaderContentPage *theContentPage;
-    ReaderContentPage *theContentPage1;
+
 	ReaderContentThumb *theThumbView;
-    ReaderContentThumb *theThumbView1;
 
 	CGFloat realMaximumZoom;
 	CGFloat tempMaximumZoom;
 
-	CGFloat bugFixWidthInset;
-
 	BOOL zoomBounced;
-    
-    BOOL hasLandscapeDoublePage;
 }
 
 #pragma mark - Constants
@@ -65,38 +60,51 @@
 
 static void *ReaderContentViewContext = &ReaderContentViewContext;
 
+static CGFloat g_BugFixWidthInset = 0.0f;
+
 #pragma mark - Properties
 
 @synthesize message;
 
 #pragma mark - ReaderContentView functions
 
-static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source, CGFloat bfwi)
+static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source)
 {
-	CGFloat w_scale = (target.width / (source.width + bfwi));
-    
+	CGFloat w_scale = (target.width / (source.width + g_BugFixWidthInset));
 
 	CGFloat h_scale = (target.height / source.height);
 
 	return ((w_scale < h_scale) ? w_scale : h_scale);
 }
 
+#pragma mark - ReaderContentView class methods
+
++ (void)initialize
+{
+	if (self == [ReaderContentView self]) // Do once - iOS 8.0 UIScrollView bug workaround
+	{
+		if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) // Not iPads
+		{
+			NSString *iosVersion = [UIDevice currentDevice].systemVersion; // iOS version as a string
+
+			if ([@"8.0" compare:iosVersion options:NSNumericSearch] != NSOrderedDescending) // 8.0 and up
+			{
+				if ([@"8.2" compare:iosVersion options:NSNumericSearch] == NSOrderedDescending) // Below 8.2
+				{
+					g_BugFixWidthInset = 2.0f * [[UIScreen mainScreen] scale]; // Reduce width of content view
+				}
+			}
+		}
+	}
+}
+
 #pragma mark - ReaderContentView instance methods
 
 - (void)updateMinimumMaximumZoom
 {
-    UIInterfaceOrientation orientation= [[UIApplication sharedApplication] statusBarOrientation];
-    CGSize pageBounds;
-    
-    if(UIInterfaceOrientationIsLandscape(orientation) && hasLandscapeDoublePage){
-        pageBounds = CGSizeMake(theContentPage.bounds.size.width + theContentPage1.bounds.size.width, theContentPage.bounds.size.height);
-    } else {
-        pageBounds = theContentPage.bounds.size;
-    }
-    
-	CGFloat zoomScale = zoomScaleThatFits(self.bounds.size, pageBounds, bugFixWidthInset);
+	CGFloat zoomScale = zoomScaleThatFits(self.bounds.size, theContentPage.bounds.size);
 
-	self.minimumZoomScale = zoomScale; self.maximumZoomScale = (zoomScale * ZOOM_MAXIMUM); // Limits
+	self.minimumZoomScale = zoomScale; self.maximumZoomScale = (zoomScale * ZOOM_MAXIMUM);
 
 	realMaximumZoom = self.maximumZoomScale; tempMaximumZoom = (realMaximumZoom * ZOOM_FACTOR);
 }
@@ -116,7 +124,7 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source, CGFloat bf
 	if (UIEdgeInsetsEqualToEdgeInsets(self.contentInset, insets) == false) self.contentInset = insets;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase doublePage:(BOOL)doublePage
+- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase
 {
 	if ((self = [super initWithFrame:frame]))
 	{
@@ -133,39 +141,12 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source, CGFloat bf
 
 		userInterfaceIdiom = [UIDevice currentDevice].userInterfaceIdiom; // User interface idiom
 
-#ifndef __arm64__ // Only under 32-bit iOS
-		if (userInterfaceIdiom == UIUserInterfaceIdiomPhone) // iOS 8.0 UIScrollView bug workaround
-		{
-			NSString *iosVersion = [UIDevice currentDevice].systemVersion; // iOS version as a string
-
-			if ([@"8.0" compare:iosVersion options:NSNumericSearch] != NSOrderedDescending) // 8.0 and up
-			{
-				bugFixWidthInset = 4.0f; // Slightly reduce width of content view
-			}
-		}
-#endif // End of only under 32-bit iOS code
-
 		theContentPage = [[ReaderContentPage alloc] initWithURL:fileURL page:page password:phrase];
 
-        theContentPage1 = nil;
-        theThumbView1 = nil;
-        
-        hasLandscapeDoublePage = doublePage;
-        
 		if (theContentPage != nil) // Must have a valid and initialized content page
 		{
-            CGRect containerFrame = theContentPage.bounds;
-            
-            if(doublePage){
-                theContentPage.frame=CGRectMake(theContentPage.frame.origin.x, theContentPage.frame.origin.y,theContentPage.frame.size.width/2, theContentPage.frame.size.height/2);
-                //if double page 2
-                theContentPage1 = [[ReaderContentPage alloc] initWithURL:fileURL page:page+1 password:phrase];
-                theContentPage1.frame =CGRectMake(theContentPage.frame.size.width, theContentPage.frame.origin.y,theContentPage.frame.size.width, theContentPage.frame.size.height);
-                
-                containerFrame = CGRectMake(theContentPage.frame.origin.x, theContentPage.frame.origin.y, theContentPage.frame.size.width*2, theContentPage.frame.size.height);
-            }
-            theContainerView = [[UIView alloc] initWithFrame:containerFrame];
-            
+			theContainerView = [[UIView alloc] initWithFrame:theContentPage.bounds];
+
 			theContainerView.autoresizesSubviews = NO;
 			theContainerView.userInteractionEnabled = NO;
 			theContainerView.contentMode = UIViewContentModeRedraw;
@@ -174,32 +155,23 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source, CGFloat bf
 
 			if ([[ReaderConstants sharedReaderConstants] showShadows]){ // Option
 
-						theContainerView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-						theContainerView.layer.shadowRadius = 4.0f; theContainerView.layer.shadowOpacity = 1.0f;
-						theContainerView.layer.shadowPath = [UIBezierPath bezierPathWithRect:theContainerView.bounds].CGPath;
+				theContainerView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+				theContainerView.layer.shadowRadius = 4.0f; theContainerView.layer.shadowOpacity = 1.0f;
+				theContainerView.layer.shadowPath = [UIBezierPath bezierPathWithRect:theContainerView.bounds].CGPath;
 
 			} // end of showShadows Option
-            
-			self.contentSize = theContentPage.bounds.size;
-            
-            [self centerScrollViewContent];
 
-			if ([[ReaderConstants sharedReaderConstants] enablePreview]) {  // Option
+			self.contentSize = theContentPage.bounds.size; [self centerScrollViewContent];
 
-						theThumbView = [[ReaderContentThumb alloc] initWithFrame:theContentPage.bounds]; // Page thumb view
-            
-            [theContainerView addSubview:theThumbView]; // Add the page thumb view to the container view
+			if ([[ReaderConstants sharedReaderConstants] enablePreview]) {
 
-            if (theContentPage1) {
-                theThumbView1 = [[ReaderContentThumb alloc] initWithFrame:theContentPage1.frame];
-                [theContainerView addSubview:theThumbView1]; // Add the page thumb view to the container view
-                
-            }
-			}  // end of enablePreview Option
-      [theContainerView addSubview:theContentPage]; // Add the content page to the container view
-      if (theContentPage1) {
-          [theContainerView addSubview:theContentPage1];
-      }
+				theThumbView = [[ReaderContentThumb alloc] initWithFrame:theContentPage.bounds]; // Page thumb view
+
+				[theContainerView addSubview:theThumbView]; // Add the page thumb view to the container view
+
+			}// end of READER_ENABLE_PREVIEW Option
+
+			[theContainerView addSubview:theContentPage]; // Add the content page to the container view
 
 			[self addSubview:theContainerView]; // Add the container view to the scroll view
 
@@ -214,11 +186,6 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source, CGFloat bf
 	}
 
 	return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame fileURL:(NSURL *)fileURL page:(NSUInteger)page password:(NSString *)phrase
-{
-    return [self initWithFrame:frame fileURL:fileURL page:page password:phrase doublePage:false];
 }
 
 - (void)dealloc
@@ -271,18 +238,8 @@ static inline CGFloat zoomScaleThatFits(CGSize target, CGSize source, CGFloat bf
 		UIImage *image = [[ReaderThumbCache sharedInstance] thumbRequest:request priority:YES]; // Request the page thumb
 
 		if ([image isKindOfClass:[UIImage class]]) [theThumbView showImage:image]; // Show image from cache
-	    
-	    if (theThumbView1) {
-	        ReaderThumbRequest *request1 = [ReaderThumbRequest newForView:theThumbView1 fileURL:fileURL password:phrase guid:guid page:page+1 size:size];
-	        
-	        UIImage *image1 = [[ReaderThumbCache sharedInstance] thumbRequest:request1 priority:YES]; // Request the page thumb
-	        
-	        if ([image1 isKindOfClass:[UIImage class]]) [theThumbView1 showImage:image1]; // Show image from cache
 
-	    }
-
-	} // end of enablePreview Option
-
+	} // end of READER_ENABLE_PREVIEW Option
 }
 
 - (id)processSingleTap:(UITapGestureRecognizer *)recognizer

@@ -1,9 +1,9 @@
 //
 //	ReaderMainPagebar.m
-//	Reader v2.8.2
+//	Reader v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-09-01.
-//	Copyright © 2011-2014 Julius Oklamcak. All rights reserved.
+//	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@
 
 #import "ReaderConstants.h"
 #import "ReaderColors.h"
+#import "ReaderLanguage.h"
 #import "ReaderMainPagebar.h"
 #import "ReaderThumbCache.h"
 #import "ReaderDocument.h"
@@ -72,8 +73,9 @@
 
 #pragma mark - ReaderMainPagebar class methods
 
-+ (Class)layerClass {
-    if ([[ReaderConstants sharedReaderConstants] flatUI]) { // Option
++ (Class)layerClass
+{
+	if ([[ReaderConstants sharedReaderConstants] flatUI]) { // Option
         return [CALayer class];
     }else{
         return [CAGradientLayer class];
@@ -133,7 +135,7 @@
 	{
 		NSInteger pages = [document.pageCount integerValue]; // Total pages
 
-		NSString *format = NSLocalizedString(@"%i of %i", @"format"); // Format
+		NSString *format = [ReaderLanguage get:@"%i of %i" withComment:@"format"]; // Format
 
 		NSString *number = [[NSString alloc] initWithFormat:format, (int)page, (int)pages];
 
