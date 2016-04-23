@@ -182,7 +182,7 @@
 			}
 		}
 
-		if ((document.canPrint == YES) && [[ReaderConstants sharedReaderConstants] enableShare] && (document.password == nil)) // Document print enabled
+		if ((document.canPrint == YES) && [[ReaderConstants sharedReaderConstants] enableShare] && ([document.password isEqual:[NSNull null]])) // Document print enabled
 		{
 			Class printInteractionController = NSClassFromString(@"UIPrintInteractionController");
 
