@@ -76,7 +76,8 @@ For other schemes, please download it first with cordova plugin fileTransfer.
         landscapeSingleFirstPage: true,
         toolbarBackgroundColor: null,
         textColor: null,
-        enableShare: false
+        enableShare: false,
+        page: 2
     }
 
     //Event when PDF Reader is closed

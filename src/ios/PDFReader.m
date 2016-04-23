@@ -35,10 +35,16 @@
     NSString* toolbarBackgroundColor = [command.arguments objectAtIndex:10];
     NSString* textColor = [command.arguments objectAtIndex:11];
     BOOL enableShare = [[command.arguments objectAtIndex:12]  isEqual: [NSNumber numberWithInt:1]];
+    NSInteger pageNumber = [[command.arguments objectAtIndex:13] intValue];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:password];
+
+    if (pageNumber > 1) {
+        document.pageNumber = [NSNumber numberWithInteger:pageNumber];
+    }
+
     ReaderConstants *readerConstants = [ReaderConstants sharedReaderConstants];
     readerConstants.flatUI = flatUI;
     readerConstants.showShadows = showShadows;

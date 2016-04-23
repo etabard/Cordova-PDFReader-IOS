@@ -110,7 +110,8 @@ PDFReader.prototype.open = function (filePath, options, success, error) {
         landscapeSingleFirstPage: true,
         toolbarBackgroundColor: null,
         textColor: null,
-        enableShare: false
+        enableShare: false,
+        page: 1
     };
 
     Object.keys(options).forEach(function (key) {
@@ -130,7 +131,8 @@ PDFReader.prototype.open = function (filePath, options, success, error) {
         defaultOptions['landscapeSingleFirstPage'],
         defaultOptions['toolbarBackgroundColor'],
         defaultOptions['textColor'],
-        defaultOptions['enableShare']
+        defaultOptions['enableShare'],
+        defaultOptions['page']
     ];
     exec('open', args, setupOk, setupFailed);
 };
